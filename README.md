@@ -3,9 +3,9 @@
 This assignment is about the design and implementation of a web-based, multi-user payment service using Java Enterprise Edition (J2EE) technologies. The system is a much simplified version of PayPal. Through a JSF-based web interface, users should be able to send money to other registered users (e.g. using their registered email address as their unique identifier), request money from other registered users and manage their own account (e.g. look at their recent transactions). Super-users (i.e. admins) should be able to access all user accounts and transactions. Optionally, you will deploy your application on the cloud (e.g. on Amazon AWS, Microsoft Azure, or any similar infrastructure).
 
 After successfully completing the assignment, you will have demonstrated that you can:
-* design and implement user interfaces using Java Server Faces
-* design and implement business logic using enterprise Java beans (EJBs)
-* design and implement a secure multi-user system
+* Design and implement user interfaces using Java Server Faces
+* Design and implement business logic using Enterprise Java Beans (EJBs)
+* Design and implement a secure multi-user system
 
 ## 2. Project Description
 Online payment services, such as PayPal, allow users to connect their online accounts to their bank accounts, debit and credit cards. In such systems, users are usually able to transfer money from their bank accounts to the online account, receive payments to this account from other users, push money from the online account to their bank accounts etc.
