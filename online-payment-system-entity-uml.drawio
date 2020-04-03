@@ -1,0 +1,31 @@
+<mxfile host="app.diagrams.net" modified="2020-04-03T12:01:41.752Z" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.120 Safari/537.36" etag="GS8MnFJ5BJgR986Zpnj5" version="12.9.3" type="github">
+  <diagram id="_Glp6gK50xnSDaAbj5AH" name="Page-1">
+    <mxGraphModel dx="661" dy="761" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="n6SMcZg-egQTI05kgtQT-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" parent="1" source="n6SMcZg-egQTI05kgtQT-6" target="n6SMcZg-egQTI05kgtQT-11" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="n6SMcZg-egQTI05kgtQT-6" value="&lt;div style=&quot;text-align: center ; box-sizing: border-box ; width: 100% ; background: rgb(228 , 228 , 228) ; padding: 2px&quot;&gt;&lt;b&gt;Account&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;box-sizing: border-box ; width: 100% ; background: #e4e4e4 ; padding: 2px&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;table style=&quot;width: 100% ; font-size: 1em&quot; cellpadding=&quot;2&quot; cellspacing=&quot;0&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;PK&lt;/td&gt;&lt;td&gt;uniqueId&lt;br&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;br&gt;Field&lt;br&gt;&lt;br&gt;Field&lt;/td&gt;&lt;td&gt;&lt;br&gt;currency&lt;br&gt;&lt;br&gt;balance&lt;br&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;" style="verticalAlign=top;align=left;overflow=fill;html=1;shadow=0;" parent="1" vertex="1">
+          <mxGeometry x="370" y="240" width="240" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="Ha2n936o-cPBtT0q2spr-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.279;entryY=1.023;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="n6SMcZg-egQTI05kgtQT-7" target="n6SMcZg-egQTI05kgtQT-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="n6SMcZg-egQTI05kgtQT-7" value="&lt;div style=&quot;text-align: center ; box-sizing: border-box ; width: 100% ; background: rgb(228 , 228 , 228) ; padding: 2px&quot;&gt;&lt;b&gt;Payment&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;box-sizing: border-box ; width: 100% ; background: #e4e4e4 ; padding: 2px&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;table style=&quot;width: 100% ; font-size: 1em&quot; cellpadding=&quot;2&quot; cellspacing=&quot;0&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;PK&lt;/td&gt;&lt;td&gt;uniqueId&lt;br&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;br&gt;Field&lt;br&gt;&lt;br&gt;&lt;br&gt;FK1&lt;br&gt;&lt;br&gt;FK2&lt;/td&gt;&lt;td&gt;&lt;br&gt;amount&lt;br&gt;currency&lt;br&gt;&lt;br&gt;sender-account&lt;br&gt;&lt;br&gt;recipient-account&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;br&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;" style="verticalAlign=top;align=left;overflow=fill;html=1;shadow=0;" parent="1" vertex="1">
+          <mxGeometry x="140" y="480" width="340" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="n6SMcZg-egQTI05kgtQT-11" value="&lt;div style=&quot;text-align: center ; box-sizing: border-box ; width: 100% ; background: rgb(228 , 228 , 228) ; padding: 2px&quot;&gt;&lt;b&gt;User&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;box-sizing: border-box ; width: 100% ; background: #e4e4e4 ; padding: 2px&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;table style=&quot;width: 100% ; font-size: 1em&quot; cellpadding=&quot;2&quot; cellspacing=&quot;0&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;PK&lt;/td&gt;&lt;td&gt;uniqueId&lt;br&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;br&gt;Field&lt;br&gt;&lt;br&gt;FK1&lt;/td&gt;&lt;td&gt;&lt;br&gt;userName&lt;br&gt;&lt;br&gt;account&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;br&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;" style="verticalAlign=top;align=left;overflow=fill;html=1;shadow=0;" parent="1" vertex="1">
+          <mxGeometry x="380" y="50" width="220" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="Ha2n936o-cPBtT0q2spr-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.75;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="Ha2n936o-cPBtT0q2spr-1" target="n6SMcZg-egQTI05kgtQT-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Ha2n936o-cPBtT0q2spr-1" value="&lt;div style=&quot;text-align: center ; box-sizing: border-box ; width: 100% ; background: rgb(228 , 228 , 228) ; padding: 2px&quot;&gt;&lt;b&gt;Request&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;box-sizing: border-box ; width: 100% ; background: #e4e4e4 ; padding: 2px&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;table style=&quot;width: 100% ; font-size: 1em&quot; cellpadding=&quot;2&quot; cellspacing=&quot;0&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;PK&lt;/td&gt;&lt;td&gt;uniqueId&lt;br&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;br&gt;Field&lt;br&gt;&lt;br&gt;&lt;br&gt;FK1&lt;br&gt;&lt;br&gt;FK2&lt;/td&gt;&lt;td&gt;&lt;br&gt;amount&lt;br&gt;currency&lt;br&gt;&lt;br&gt;sender-account&lt;br&gt;&lt;br&gt;recipient-account&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;br&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;" style="verticalAlign=top;align=left;overflow=fill;html=1;shadow=0;" vertex="1" parent="1">
+          <mxGeometry x="500" y="480" width="340" height="180" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
