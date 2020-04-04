@@ -41,11 +41,13 @@ public class Account implements Serializable {
     public Account() {
     }
 
-    public Account(Long id, double balance, Currency currency, User user) {
+    public Account(Long id, double balance, Currency currency, User user, List<Payment> payments, List<Request> requests) {
         this.id = id;
         this.balance = balance;
         this.currency = currency;
         this.user = user;
+        this.payments = payments;
+        this.requests = requests;
     }
 
     public Long getId() {
@@ -80,13 +82,31 @@ public class Account implements Serializable {
         this.user = user;
     }
 
+    public List<Payment> getPayments() {
+        return payments;
+    }
+
+    public void setPayments(List<Payment> payments) {
+        this.payments = payments;
+    }
+
+    public List<Request> getRequests() {
+        return requests;
+    }
+
+    public void setRequests(List<Request> requests) {
+        this.requests = requests;
+    }
+
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 41 * hash + Objects.hashCode(this.id);
-        hash = 41 * hash + (int) (Double.doubleToLongBits(this.balance) ^ (Double.doubleToLongBits(this.balance) >>> 32));
-        hash = 41 * hash + Objects.hashCode(this.currency);
-        hash = 41 * hash + Objects.hashCode(this.user);
+        hash = 37 * hash + Objects.hashCode(this.id);
+        hash = 37 * hash + (int) (Double.doubleToLongBits(this.balance) ^ (Double.doubleToLongBits(this.balance) >>> 32));
+        hash = 37 * hash + Objects.hashCode(this.currency);
+        hash = 37 * hash + Objects.hashCode(this.user);
+        hash = 37 * hash + Objects.hashCode(this.payments);
+        hash = 37 * hash + Objects.hashCode(this.requests);
         return hash;
     }
 
@@ -112,6 +132,12 @@ public class Account implements Serializable {
             return false;
         }
         if (!Objects.equals(this.user, other.user)) {
+            return false;
+        }
+        if (!Objects.equals(this.payments, other.payments)) {
+            return false;
+        }
+        if (!Objects.equals(this.requests, other.requests)) {
             return false;
         }
         return true;
