@@ -30,7 +30,7 @@ public class Account implements Serializable {
     protected Currency currency;
     
     @OneToOne(mappedBy="account")
-    protected User user;
+    protected SystemUser user;
     
     @OneToMany(mappedBy = "sender")
     protected List<Payment> payments;
@@ -41,7 +41,7 @@ public class Account implements Serializable {
     public Account() {
     }
 
-    public Account(Long id, double balance, Currency currency, User user, List<Payment> payments, List<Request> requests) {
+    public Account(Long id, double balance, Currency currency, SystemUser user, List<Payment> payments, List<Request> requests) {
         this.id = id;
         this.balance = balance;
         this.currency = currency;
@@ -74,11 +74,11 @@ public class Account implements Serializable {
         this.currency = currency;
     }
     
-    public User getUser() {
+    public SystemUser getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(SystemUser user) {
         this.user = user;
     }
 

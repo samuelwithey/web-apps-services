@@ -9,24 +9,28 @@ import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
 @Entity
-public class User implements Serializable {
+public class SystemUser implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
     @NotNull
-    protected String user_name;
+    protected String username;
+    
+    @NotNull
+    String userpassword;
     
     @OneToOne
     protected Account account;
 
-    public User() {
+    public SystemUser() {
     }
 
-    public User(Long id, String user_name, Account account) {
+    public SystemUser(Long id, String user_name, Account account, String user_password) {
         this.id = id;
-        this.user_name = user_name;
+        this.username = user_name;
+        this.userpassword = user_password;
         this.account = account;
     }
 
@@ -39,11 +43,19 @@ public class User implements Serializable {
     }
 
     public String getUser_name() {
-        return user_name;
+        return username;
     }
 
     public void setUser_name(String user_name) {
-        this.user_name = user_name;
+        this.username = user_name;
+    }
+
+    public String getUser_password() {
+        return userpassword;
+    }
+
+    public void setUser_password(String user_password) {
+        this.userpassword = user_password;
     }
 
     public Account getAccount() {
@@ -58,7 +70,7 @@ public class User implements Serializable {
     public int hashCode() {
         int hash = 3;
         hash = 97 * hash + Objects.hashCode(this.id);
-        hash = 97 * hash + Objects.hashCode(this.user_name);
+        hash = 97 * hash + Objects.hashCode(this.username);
         hash = 97 * hash + Objects.hashCode(this.account);
         return hash;
     }
@@ -74,8 +86,8 @@ public class User implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final User other = (User) obj;
-        if (!Objects.equals(this.user_name, other.user_name)) {
+        final SystemUser other = (SystemUser) obj;
+        if (!Objects.equals(this.username, other.username)) {
             return false;
         }
         if (!Objects.equals(this.id, other.id)) {
