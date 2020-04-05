@@ -32,10 +32,10 @@ public class Account implements Serializable {
     @OneToOne(mappedBy="account")
     protected User user;
     
-    @OneToMany
+    @OneToMany(mappedBy = "sender")
     protected List<Payment> payments;
     
-    @OneToMany
+    @OneToMany(mappedBy = "sender")
     protected List<Request> requests;
 
     public Account() {
