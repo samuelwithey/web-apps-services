@@ -27,8 +27,7 @@ public class SystemUser implements Serializable {
     public SystemUser() {
     }
 
-    public SystemUser(Long id, String user_name, Account account, String user_password) {
-        this.id = id;
+    public SystemUser(String user_name, String user_password /*, Account account*/) {
         this.username = user_name;
         this.userpassword = user_password;
         this.account = account;
