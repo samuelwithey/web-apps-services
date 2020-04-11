@@ -1,6 +1,5 @@
 package com.sw501.onlinepaymentservice.entity;
 
-import com.sw501.onlinepaymentservice.enums.Currency;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
@@ -27,7 +26,7 @@ public class UserAccount implements Serializable {
     
     @Enumerated(EnumType.STRING)
     @NotNull
-    protected Currency currency;
+    protected CurrencyType currency;
     
     @OneToOne(mappedBy="account")
     protected SystemUser user;
@@ -41,7 +40,7 @@ public class UserAccount implements Serializable {
     public UserAccount() {
     }
 
-    public UserAccount(double balance, Currency currency, SystemUser user, List<Payment> payments, List<Request> requests) {
+    public UserAccount(double balance, CurrencyType currency, SystemUser user, List<Payment> payments, List<Request> requests) {
         this.balance = balance;
         this.currency = currency;
         this.user = user;
@@ -57,11 +56,11 @@ public class UserAccount implements Serializable {
         this.id = id;
     }
 
-    public Currency getCurrency() {
+    public CurrencyType getCurrency() {
         return currency;
     }
 
-    public void setCurrency(Currency currency) {
+    public void setCurrency(CurrencyType currency) {
         this.currency = currency;
     }
 
