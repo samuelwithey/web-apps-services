@@ -1,6 +1,7 @@
 package com.sw501.onlinepaymentservice.jsf;
 
 import com.sw501.onlinepaymentservice.ejb.UserService;
+import com.sw501.onlinepaymentservice.entity.UserAccount;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
@@ -14,6 +15,7 @@ public class RegistrationBean {
     
     String username;
     String userpassword;
+    UserAccount account;
 
     public RegistrationBean() {
 
@@ -21,7 +23,7 @@ public class RegistrationBean {
 
     //call the injected EJB
     public String register() {
-        usrSrv.registerUser(username, userpassword);
+        usrSrv.registerUser(username, userpassword, account);
         return "index";
     }
     
