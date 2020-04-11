@@ -2,6 +2,7 @@ package com.sw501.onlinepaymentservice.ejb;
 
 import com.sw501.onlinepaymentservice.entity.SystemUser;
 import com.sw501.onlinepaymentservice.entity.SystemUserGroup;
+import com.sw501.onlinepaymentservice.entity.UserAccount;
 import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
 import java.security.MessageDigest;
@@ -21,7 +22,7 @@ public class UserService {
     public UserService() {
     }
 
-    public void registerUser(String username, String userpassword) {
+    public void registerUser(String username, String userpassword, UserAccount account) {
         try {
             SystemUser sys_user;
             SystemUserGroup sys_user_group;
@@ -38,7 +39,7 @@ public class UserService {
 
             // apart from the default constructor which is required by JPA
             // you need to also implement a constructor that will make the following code succeed
-            sys_user = new SystemUser(username, paswdToStoreInDB);
+            sys_user = new SystemUser(username, paswdToStoreInDB, account);
             sys_user_group = new SystemUserGroup(username, "users");
 
             em.persist(sys_user);

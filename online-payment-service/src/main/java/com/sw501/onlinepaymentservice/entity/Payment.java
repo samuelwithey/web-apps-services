@@ -24,16 +24,15 @@ public class Payment implements Serializable{
     
     @ManyToOne(cascade = ALL)
     @JoinColumn
-    protected Account sender;
+    protected UserAccount sender;
     
     @OneToOne
-    protected Account recipient;
+    protected UserAccount recipient;
 
     public Payment() {
     }
 
-    public Payment(Long id, double amount, Account sender, Account recipient) {
-        this.id = id;
+    public Payment(double amount, UserAccount sender, UserAccount recipient) {
         this.amount = amount;
         this.sender = sender;
         this.recipient = recipient;
@@ -55,19 +54,19 @@ public class Payment implements Serializable{
         this.amount = amount;
     }
 
-    public Account getSender() {
+    public UserAccount getSender() {
         return sender;
     }
 
-    public void setSender(Account sender) {
+    public void setSender(UserAccount sender) {
         this.sender = sender;
     }
 
-    public Account getRecipient() {
+    public UserAccount getRecipient() {
         return recipient;
     }
 
-    public void setRecipient(Account recipient) {
+    public void setRecipient(UserAccount recipient) {
         this.recipient = recipient;
     }
 

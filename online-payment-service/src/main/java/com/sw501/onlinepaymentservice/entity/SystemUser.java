@@ -22,14 +22,14 @@ public class SystemUser implements Serializable {
     String userpassword;
     
     @OneToOne
-    protected Account account;
+    protected UserAccount account;
 
     public SystemUser() {
     }
 
-    public SystemUser(String user_name, String user_password /*, Account account*/) {
-        this.username = user_name;
-        this.userpassword = user_password;
+    public SystemUser(String username, String userpassword, UserAccount account) {
+        this.username = username;
+        this.userpassword = userpassword;
         this.account = account;
     }
 
@@ -41,36 +41,37 @@ public class SystemUser implements Serializable {
         this.id = id;
     }
 
-    public String getUser_name() {
+    public String getUsername() {
         return username;
     }
 
-    public void setUser_name(String user_name) {
-        this.username = user_name;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public String getUser_password() {
+    public String getUserpassword() {
         return userpassword;
     }
 
-    public void setUser_password(String user_password) {
-        this.userpassword = user_password;
+    public void setUserpassword(String userpassword) {
+        this.userpassword = userpassword;
     }
 
-    public Account getAccount() {
+    public UserAccount getUserAccount() {
         return account;
     }
 
-    public void setAccount(Account account) {
+    public void setUserAccount(UserAccount account) {
         this.account = account;
     }
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 97 * hash + Objects.hashCode(this.id);
-        hash = 97 * hash + Objects.hashCode(this.username);
-        hash = 97 * hash + Objects.hashCode(this.account);
+        int hash = 7;
+        hash = 71 * hash + Objects.hashCode(this.id);
+        hash = 71 * hash + Objects.hashCode(this.username);
+        hash = 71 * hash + Objects.hashCode(this.userpassword);
+        hash = 71 * hash + Objects.hashCode(this.account);
         return hash;
     }
 
@@ -87,6 +88,9 @@ public class SystemUser implements Serializable {
         }
         final SystemUser other = (SystemUser) obj;
         if (!Objects.equals(this.username, other.username)) {
+            return false;
+        }
+        if (!Objects.equals(this.userpassword, other.userpassword)) {
             return false;
         }
         if (!Objects.equals(this.id, other.id)) {

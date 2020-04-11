@@ -16,7 +16,7 @@ import javax.validation.constraints.NotNull;
 
 
 @Entity
-public class Account implements Serializable {
+public class UserAccount implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -38,11 +38,10 @@ public class Account implements Serializable {
     @OneToMany(mappedBy = "sender")
     protected List<Request> requests;
 
-    public Account() {
+    public UserAccount() {
     }
 
-    public Account(Long id, double balance, Currency currency, SystemUser user, List<Payment> payments, List<Request> requests) {
-        this.id = id;
+    public UserAccount(double balance, Currency currency, SystemUser user, List<Payment> payments, List<Request> requests) {
         this.balance = balance;
         this.currency = currency;
         this.user = user;
@@ -58,14 +57,6 @@ public class Account implements Serializable {
         this.id = id;
     }
 
-    public double getBalance() {
-        return balance;
-    }
-
-    public void setBalance(double balance) {
-        this.balance = balance;
-    }
-
     public Currency getCurrency() {
         return currency;
     }
@@ -73,7 +64,7 @@ public class Account implements Serializable {
     public void setCurrency(Currency currency) {
         this.currency = currency;
     }
-    
+
     public SystemUser getUser() {
         return user;
     }
@@ -100,13 +91,13 @@ public class Account implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 37 * hash + Objects.hashCode(this.id);
-        hash = 37 * hash + (int) (Double.doubleToLongBits(this.balance) ^ (Double.doubleToLongBits(this.balance) >>> 32));
-        hash = 37 * hash + Objects.hashCode(this.currency);
-        hash = 37 * hash + Objects.hashCode(this.user);
-        hash = 37 * hash + Objects.hashCode(this.payments);
-        hash = 37 * hash + Objects.hashCode(this.requests);
+        int hash = 5;
+        hash = 41 * hash + Objects.hashCode(this.id);
+        hash = 41 * hash + (int) (Double.doubleToLongBits(this.balance) ^ (Double.doubleToLongBits(this.balance) >>> 32));
+        hash = 41 * hash + Objects.hashCode(this.currency);
+        hash = 41 * hash + Objects.hashCode(this.user);
+        hash = 41 * hash + Objects.hashCode(this.payments);
+        hash = 41 * hash + Objects.hashCode(this.requests);
         return hash;
     }
 
@@ -121,7 +112,7 @@ public class Account implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Account other = (Account) obj;
+        final UserAccount other = (UserAccount) obj;
         if (Double.doubleToLongBits(this.balance) != Double.doubleToLongBits(other.balance)) {
             return false;
         }
