@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
+import static javax.persistence.CascadeType.PERSIST;
 
 
 @Entity
@@ -55,6 +56,16 @@ public class UserAccount implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+
+    public double getBalance() {
+        return balance;
+    }
+
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
+    
+    
 
     public CurrencyType getCurrency() {
         return currency;

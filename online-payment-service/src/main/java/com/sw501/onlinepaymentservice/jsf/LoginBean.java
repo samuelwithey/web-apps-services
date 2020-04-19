@@ -16,7 +16,6 @@ public class LoginBean implements Serializable {
         FacesContext context = FacesContext.getCurrentInstance();
         HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
         try {
-            //this method will disassociate the principal from the session (effectively logging him/her out)
             request.logout();
             context.addMessage(null, new FacesMessage("User is logged out"));
         } catch (ServletException e) {

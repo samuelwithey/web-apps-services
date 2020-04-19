@@ -4,7 +4,6 @@ import com.sw501.onlinepaymentservice.entity.SystemUser;
 import com.sw501.onlinepaymentservice.entity.SystemUserGroup;
 import com.sw501.onlinepaymentservice.entity.UserAccount;
 import java.io.UnsupportedEncodingException;
-import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.logging.Level;
@@ -20,7 +19,7 @@ public class UserService {
     EntityManager em;
 
     public UserService() {
-    }
+    } 
 
     public void registerUser(String username, String userpassword, UserAccount account) {
         try {
@@ -37,13 +36,13 @@ public class UserService {
             }
             String paswdToStoreInDB = sb.toString();
 
-            // apart from the default constructor which is required by JPA
-            // you need to also implement a constructor that will make the following code succeed
-            sys_user = new SystemUser(username, paswdToStoreInDB, account);
+            sys_user = new SystemUser(username, userpassword, account);
             sys_user_group = new SystemUserGroup(username, "users");
+            account.setUser(sys_user);
 
             em.persist(sys_user);
             em.persist(sys_user_group);
+            em.persist(account);
 
         } catch (UnsupportedEncodingException | NoSuchAlgorithmException ex) {
             Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
