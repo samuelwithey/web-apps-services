@@ -36,7 +36,7 @@ public class UserService {
             }
             String paswdToStoreInDB = sb.toString();
 
-            sys_user = new SystemUser(username, userpassword, account);
+            sys_user = new SystemUser(username, paswdToStoreInDB, account);
             sys_user_group = new SystemUserGroup(username, "users");
             account.setUser(sys_user);
 
