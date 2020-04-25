@@ -22,8 +22,7 @@ public class RegistrationBean {
     public RegistrationBean() {
 
     }
-
-    //call the injected EJB
+    
     public String register() {
         account = new UserAccount();
         account.setCurrency(currency);

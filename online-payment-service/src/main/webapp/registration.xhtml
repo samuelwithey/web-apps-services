@@ -20,7 +20,7 @@
             <br/>
             <h:outputLabel for="account" value="*Currency:"/>
             <h:selectOneMenu value="#{registrationBean.currency}" >
-                <f:selectItems value="#{registrationBean.getCurrencyTypes()}" />
+                <f:selectItems value="#{registrationBean.currencyTypes}" />
             </h:selectOneMenu>
             <br/>
             <h:commandButton id="register" type="submit" value="Register" action="#{registrationBean.register}" title="Register User"/>
