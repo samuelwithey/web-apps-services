@@ -65,8 +65,6 @@ public class UserAccount implements Serializable {
         this.balance = balance;
     }
     
-    
-
     public CurrencyType getCurrency() {
         return currency;
     }

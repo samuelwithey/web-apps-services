@@ -6,7 +6,12 @@
         <title>User Page</title>
     </h:head>
     <h:body>
-        <h:outputLabel value="THIS IS A PAGE THAT NORMAL USERS CAN ACCESS"/>
+        <h:outputText value="THIS IS A PAGE THAT NORMAL USERS CAN ACCESS"/>
+        <br/>
+        <h:outputText value="#{userAccountBean.username}"/>
+        <br/>
+        <h:outputText value="#{userAccountBean.currency}"/>
+        <h:outputText value="#{userAccountBean.balance}"/>
         <br/>
         <h:link value="Back to index" outcome="/index"/>
     </h:body>

@@ -5,8 +5,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
+    
+@NamedQuery(name = "lookupUser", query = "SELECT u FROM SystemUser u WHERE u.username = ?1")
 
 @Entity
 public class SystemUser implements Serializable {
