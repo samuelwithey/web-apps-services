@@ -31,10 +31,9 @@ public class SystemUser implements Serializable {
     public SystemUser() {
     }
 
-    public SystemUser(String username, String userpassword, UserAccount account) {
+    public SystemUser(String username, String userpassword) {
         this.username = username;
         this.userpassword = userpassword;
-        this.account = account;
     }
 
     public Long getId() {
