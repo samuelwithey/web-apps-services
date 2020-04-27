@@ -46,13 +46,41 @@ public class UserService {
             }
             String paswdToStoreInDB = sb.toString();
 
-            sys_user = new SystemUser(username, paswdToStoreInDB, account);
+            sys_user = new SystemUser(username, paswdToStoreInDB);
             sys_user_group = new SystemUserGroup(username, "users");
+            sys_user.setUserAccount(account);
             account.setUser(sys_user);
 
             em.persist(sys_user);
             em.persist(sys_user_group);
             em.persist(account);
+
+        } catch (UnsupportedEncodingException | NoSuchAlgorithmException ex) {
+            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    @RolesAllowed("admins")
+    public void registerAdmin(String username, String userpassword) {
+        try {
+            SystemUser sys_user;
+            SystemUserGroup sys_user_group;
+
+            MessageDigest md = MessageDigest.getInstance("SHA-256");
+            String passwd = userpassword;
+            md.update(passwd.getBytes("UTF-8"));
+            byte[] digest = md.digest();
+            StringBuffer sb = new StringBuffer();
+            for (int i = 0; i < digest.length; i++) {
+                sb.append(Integer.toString((digest[i] & 0xff) + 0x100, 16).substring(1));
+            }
+            String paswdToStoreInDB = sb.toString();
+
+            sys_user = new SystemUser(username, paswdToStoreInDB);
+            sys_user_group = new SystemUserGroup(username, "users");
+
+            em.persist(sys_user);
+            em.persist(sys_user_group);
 
         } catch (UnsupportedEncodingException | NoSuchAlgorithmException ex) {
             Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
