@@ -11,19 +11,19 @@
             Fill in the details and press the register button.
             <br/>
             <h:outputLabel for="username" value="*User name:"/>
-            <h:inputText id ="username" value="#{registrationBean.username}" title="Enter user name" required="true" requiredMessage="Mandatory Field"/>
+            <h:inputText id ="username" value="#{userRegistrationBean.username}" title="Enter user name" required="true" requiredMessage="Mandatory Field"/>
             <h:message style="color:red" for="username"/>
             <br/>
             <h:outputLabel for="userPassword" value="*Password:"/>
-            <h:inputSecret id ="userPassword" value="#{registrationBean.userpassword}" title="Enter password" label="password" required="true" requiredMessage="Mandatory Field"/>
+            <h:inputSecret id ="userPassword" value="#{userRegistrationBean.userpassword}" title="Enter password" label="password" required="true" requiredMessage="Mandatory Field"/>
             <h:message style="color:red" for="userPassword"/>
             <br/>
             <h:outputLabel for="account" value="*Currency:"/>
-            <h:selectOneMenu value="#{registrationBean.currency}" >
-                <f:selectItems value="#{registrationBean.currencyTypes}" />
+            <h:selectOneMenu value="#{userRegistrationBean.currency}" >
+                <f:selectItems value="#{userRegistrationBean.currencyTypes}" />
             </h:selectOneMenu>
             <br/>
-            <h:commandButton id="register" type="submit" value="Register" action="#{registrationBean.register}" title="Register User"/>
+            <h:commandButton id="register" type="submit" value="Register" action="#{userRegistrationBean.register}" title="Register User"/>
             <h:commandButton id="reset" type="reset" value="Reset Form" title="Reset Form"/>
         </h:form>
     </h:body>
