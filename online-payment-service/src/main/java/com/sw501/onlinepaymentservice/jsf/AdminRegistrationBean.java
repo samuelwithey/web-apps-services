@@ -21,7 +21,7 @@ public class AdminRegistrationBean {
     
     public String register() {
         usrSrv.registerAdmin(username, userpassword);
-        return "index";
+        return "admin";
     }
     
     public UserService getUsrSrv() {

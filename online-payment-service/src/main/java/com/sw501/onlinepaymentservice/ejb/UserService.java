@@ -77,7 +77,7 @@ public class UserService {
             String paswdToStoreInDB = sb.toString();
 
             sys_user = new SystemUser(username, paswdToStoreInDB);
-            sys_user_group = new SystemUserGroup(username, "users");
+            sys_user_group = new SystemUserGroup(username, "admins");
 
             em.persist(sys_user);
             em.persist(sys_user_group);
