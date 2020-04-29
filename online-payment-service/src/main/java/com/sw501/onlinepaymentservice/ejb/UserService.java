@@ -87,9 +87,10 @@ public class UserService {
         }
     }
      
-   @RolesAllowed("admins")
-    public List<UserAccount> viewAllUserAccounts() {
-        return em.createQuery("SELECT account FROM UserAccount account").getResultList();
+    @RolesAllowed("admins")
+    public synchronized List<UserAccount> viewAllUserAccounts() {
+        List<UserAccount> userAccounts = em.createNamedQuery("findAllUserAccounts").getResultList();
+        return userAccounts;
     }
     
     @RolesAllowed("users")
