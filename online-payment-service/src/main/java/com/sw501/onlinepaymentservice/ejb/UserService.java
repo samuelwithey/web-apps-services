@@ -31,10 +31,11 @@ public class UserService {
     public UserService() {
     } 
 
-    public void registerUser(String username, String userpassword, UserAccount account) {
+    public void registerUser(String username, String userpassword, CurrencyType currency) {
         try {
             SystemUser sys_user;
             SystemUserGroup sys_user_group;
+            UserAccount account;
 
             MessageDigest md = MessageDigest.getInstance("SHA-256");
             String passwd = userpassword;
@@ -48,9 +49,13 @@ public class UserService {
 
             sys_user = new SystemUser(username, paswdToStoreInDB);
             sys_user_group = new SystemUserGroup(username, "users");
-            sys_user.setUserAccount(account);
+            
+            account = new UserAccount();
+            account.setCurrency(currency);
+            account.setBalance(1000);
             account.setUser(sys_user);
-
+            sys_user.setUserAccount(account);
+            
             em.persist(sys_user);
             em.persist(sys_user_group);
             em.persist(account);

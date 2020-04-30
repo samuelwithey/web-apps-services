@@ -17,17 +17,13 @@ public class UserRegistrationBean {
     String username;
     String userpassword;
     CurrencyType currency;
-    UserAccount account;
-
+    
     public UserRegistrationBean() {
 
     }
     
     public String register() {
-        account = new UserAccount();
-        account.setCurrency(currency);
-        account.setBalance(1000);
-        usrSrv.registerUser(username, userpassword, account);
+        usrSrv.registerUser(username, userpassword, currency);
         return "index";
     }
     
@@ -53,14 +49,6 @@ public class UserRegistrationBean {
 
     public void setUserpassword(String userpassword) {
         this.userpassword = userpassword;
-    }
-
-    public UserAccount getAccount() {
-        return account;
-    }
-
-    public void setAccount(UserAccount account) {
-        this.account = account;
     }
 
     public CurrencyType getCurrency() {
