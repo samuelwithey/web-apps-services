@@ -38,8 +38,7 @@ Users should be able to:
 Administrators should be able to see:
 * user accounts
 * all payment transactions
-
-and register new administrators
+* register new administrators
 
 CDI Beans must not access any persistent data from the database. They should delegate all business logic to the service layer.
 
