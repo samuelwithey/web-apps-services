@@ -1,9 +1,9 @@
 package com.sw501.onlinepaymentservice.entity;
 
 public enum CurrencyType {
-    GB_POUNDS("£"), 
-    US_DOLLARS("$"), 
-    EURO("€");
+    GBP("£"), 
+    USD("$"), 
+    EUR("€");
     
     public final String label;
     

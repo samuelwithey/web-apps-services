@@ -17,6 +17,10 @@ import javax.ejb.SessionContext;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.MediaType;
 
 @DeclareRoles({"users", "admins"})
 @Stateless
@@ -30,6 +34,16 @@ public class UserService {
 
     public UserService() {
     } 
+    
+    public double currencyConversion(CurrencyType currency, double amount) {
+         Client client = ClientBuilder.newClient();
+         WebTarget myResource = client.target("http://localhost:10000/CurrencyConversionRS/conversion")
+                 .path("{currency1}").resolveTemplate("currency1", "GBP")
+                 .path("{currency2}").resolveTemplate("currency2", currency.name())
+                 .path("{amount_of_currency}").resolveTemplate("amount_of_currency", amount);
+        String response = myResource.request(MediaType.APPLICATION_JSON).get(String.class);
+        return Double.parseDouble(response);
+    }
 
     public void registerUser(String username, String userpassword, CurrencyType currency) {
         try {
@@ -52,7 +66,12 @@ public class UserService {
             
             account = new UserAccount();
             account.setCurrency(currency);
-            account.setBalance(1000);
+            
+            if(currency.name().equals("GBP")) {
+                account.setBalance(1000);
+            } else {
+                account.setBalance(currencyConversion(currency, 1000));
+            }
             account.setUser(sys_user);
             sys_user.setUserAccount(account);
             
