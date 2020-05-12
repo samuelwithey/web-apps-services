@@ -28,6 +28,11 @@ public class Request implements Serializable{
     
     @OneToOne
     protected UserAccount recipient;
+    
+    @NotNull
+    protected boolean pending;
+    
+    protected Boolean accepted;
 
     public Request() {
     }
@@ -36,6 +41,8 @@ public class Request implements Serializable{
         this.amount = amount;
         this.sender = sender;
         this.recipient = recipient;
+        this.pending = true;
+        this.accepted = null;
     }
 
     public Long getId() {
