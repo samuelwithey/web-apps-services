@@ -1,6 +1,6 @@
 package com.sw501.onlinepaymentservice.jsf;
 
-import com.sw501.onlinepaymentservice.ejb.Transactions;
+import com.sw501.onlinepaymentservice.ejb.Transaction;
 import com.sw501.onlinepaymentservice.ejb.UserService;
 import com.sw501.onlinepaymentservice.entity.CurrencyType;
 import java.io.Serializable;
