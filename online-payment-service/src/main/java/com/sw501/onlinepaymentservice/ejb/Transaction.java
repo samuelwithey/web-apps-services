@@ -67,38 +67,38 @@ public class Transaction {
     }
     
     @RolesAllowed("users")
-    public List<Request> viewIncomingRequests() {
-        List<Request> incoming_requests = em.createNamedQuery("viewIncomingRequests").getResultList();
+    public List<Request> viewReceivedRequests() {
+        List<Request> incoming_requests = em.createNamedQuery("viewReceivedRequests").setParameter(1, getUser()).getResultList();
         return incoming_requests;
     }
     
     @RolesAllowed("users")
-    public List<Request> viewPendingIncomingRequests() {
-        List<Request> incoming_requests = em.createNamedQuery("viewIncomingRequests").getResultList();
+    public List<Request> viewPendingReceivedRequests() {
+        List<Request> incoming_requests = em.createNamedQuery("viewPendingReceivedRequests").setParameter(1, getUser()).getResultList();
         return incoming_requests;
     }
     
     @RolesAllowed("users")
-    public List<Request> viewAcceptedIncomingRequests() {
-        List<Request> incoming_requests = em.createNamedQuery("viewIncomingRequests").getResultList();
+    public List<Request> viewAcceptedReceivedRequests() {
+        List<Request> incoming_requests = em.createNamedQuery("viewAcceptedReceivedRequests").setParameter(1, getUser()).getResultList();
         return incoming_requests;
     }
     
     @RolesAllowed("users")
-    public List<Request> viewOutgoingRequests() {
-        List<Request> outgoing_requests = em.createNamedQuery("viewOutgoingRequests").getResultList();
+    public List<Request> viewSentRequests() {
+        List<Request> outgoing_requests = em.createNamedQuery("viewSentRequests").setParameter(1, getUser()).getResultList();
         return outgoing_requests;
     }
     
     @RolesAllowed("users")
-    public List<Request> viewPendingOutgoingRequests() {
-        List<Request> outgoing_requests = em.createNamedQuery("viewPendingOutgoingRequests").getResultList();
+    public List<Request> viewPendingSentRequests() {
+        List<Request> outgoing_requests = em.createNamedQuery("viewPendingSentRequests").setParameter(1, getUser()).getResultList();
         return outgoing_requests;
     }
     
     @RolesAllowed("users")
-    public List<Request> viewAcceptedOutgoingRequests() {
-        List<Request> outgoing_requests = em.createNamedQuery("viewPendingOutgoingRequests").getResultList();
+    public List<Request> viewAcceptedSentRequests() {
+        List<Request> outgoing_requests = em.createNamedQuery("viewAcceptedSentRequests").setParameter(1, getUser()).getResultList();
         return outgoing_requests;
     }
     

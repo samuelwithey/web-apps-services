@@ -15,9 +15,17 @@ import javax.validation.constraints.NotNull;
 
 @NamedQuery(name = "viewAllRequests", query = "SELECT r FROM Request r")
 
-@NamedQuery(name = "viewIncomingRequests", query = "SELECT r FROM Request r WEHRE r.recipient = ?1")
+@NamedQuery(name = "viewReceivedRequests", query = "SELECT r FROM Request r WHERE r.recipient = ?1")
 
-@NamedQuery(name = "viewOutgoingRequests", query = "SELECT r FROM Request r WHERE r.sender = ?1")
+@NamedQuery(name = "viewPendingReceivedRequests", query = "SELECT r FROM Request r WHERE r.recipient = ?1 AND r.pending = TRUE")
+
+@NamedQuery(name = "viewAcceptedReceivedRequests", query = "SELECT r FROM Request r WHERE r.recipient = ?1 AND r.accepted = TRUE")
+
+@NamedQuery(name = "viewSentRequests", query = "SELECT r FROM Request r WHERE r.sender = ?1")
+
+@NamedQuery(name = "viewPendingSentRequests", query = "SELECT r FROM Request r WHERE r.sender = ?1 AND r.pending = TRUE")
+
+@NamedQuery(name = "viewAcceptedSentRequests", query = "SELECT r FROM Request r WHERE r.sender = ?1 AND r.accepted = TRUE")
 
 
 @Entity
