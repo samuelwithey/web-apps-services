@@ -26,14 +26,6 @@ public class UserRegistrationBean {
         usrSrv.registerUser(username, userpassword, currency);
         return "index";
     }
-    
-    public UserService getUsrSrv() {
-        return usrSrv;
-    }
-
-    public void setUsrSrv(UserService usrSrv) {
-        this.usrSrv = usrSrv;
-    }
 
     public String getUsername() {
         return username;
