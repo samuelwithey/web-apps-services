@@ -55,13 +55,13 @@ public class Transaction {
     }
     
     @RolesAllowed("users")
-    public List<Payment> viewIncomingPayments() {
+    public List<Payment> viewSentPayments() {
         List<Payment> incoming_payments = em.createNamedQuery("viewIncomingPayments").getResultList();
         return incoming_payments;
     }
     
     @RolesAllowed("users")
-    public List<Payment> viewOutgoingPayments() {
+    public List<Payment> viewReceivedPayments() {
         List<Payment> outgoing_payments = em.createNamedQuery("viewOutgoingPayments").getResultList();
         return outgoing_payments;
     }
@@ -73,8 +73,32 @@ public class Transaction {
     }
     
     @RolesAllowed("users")
+    public List<Request> viewPendingIncomingRequests() {
+        List<Request> incoming_requests = em.createNamedQuery("viewIncomingRequests").getResultList();
+        return incoming_requests;
+    }
+    
+    @RolesAllowed("users")
+    public List<Request> viewAcceptedIncomingRequests() {
+        List<Request> incoming_requests = em.createNamedQuery("viewIncomingRequests").getResultList();
+        return incoming_requests;
+    }
+    
+    @RolesAllowed("users")
     public List<Request> viewOutgoingRequests() {
         List<Request> outgoing_requests = em.createNamedQuery("viewOutgoingRequests").getResultList();
+        return outgoing_requests;
+    }
+    
+    @RolesAllowed("users")
+    public List<Request> viewPendingOutgoingRequests() {
+        List<Request> outgoing_requests = em.createNamedQuery("viewPendingOutgoingRequests").getResultList();
+        return outgoing_requests;
+    }
+    
+    @RolesAllowed("users")
+    public List<Request> viewAcceptedOutgoingRequests() {
+        List<Request> outgoing_requests = em.createNamedQuery("viewPendingOutgoingRequests").getResultList();
         return outgoing_requests;
     }
     
