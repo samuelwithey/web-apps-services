@@ -1,7 +1,10 @@
 package com.sw501.onlinepaymentservice.ejb;
 
+import com.sw501.onlinepaymentservice.entity.Payment;
+import com.sw501.onlinepaymentservice.entity.Request;
 import com.sw501.onlinepaymentservice.entity.SystemUser;
 import com.sw501.onlinepaymentservice.entity.UserAccount;
+import java.util.List;
 import javax.annotation.Resource;
 import javax.annotation.security.DeclareRoles;
 import javax.annotation.security.RolesAllowed;
@@ -23,6 +26,12 @@ public class Transaction {
     @RolesAllowed("users")
     public SystemUser getUser() {
         String username = ctx.getCallerPrincipal().getName();
+        SystemUser user =(SystemUser) em.createNamedQuery("lookupUser").setParameter(1, username).getSingleResult();
+        return user;
+    }
+    
+    @RolesAllowed("users")
+    public SystemUser getUser(String username) {
         SystemUser user =(SystemUser) em.createNamedQuery("lookupUser").setParameter(1, username).getSingleResult();
         return user;
     }
@@ -66,13 +75,15 @@ public class Transaction {
     }
     
     @RolesAllowed("admins")
-    public void viewAllPayments() {
-    
+    public List<Payment> viewAllPayments() {
+        List<Payment> payments = em.createNamedQuery("viewAllPayments").getResultList();
+        return payments;
     }
     
     @RolesAllowed("admins")
-    public void viewAllRequests() {
-    
+    public List<Request> viewAllRequests() {
+        List<Request> requests = em.createNamedQuery("viewAllRequests").getResultList();
+        return requests;
     }
     
     @RolesAllowed("users")

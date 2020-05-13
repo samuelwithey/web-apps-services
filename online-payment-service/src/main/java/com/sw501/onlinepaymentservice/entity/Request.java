@@ -9,8 +9,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
+
+@NamedQuery(name = "viewAllRequests", query = "SELECT r FROM Request r")
 
 @Entity
 public class Request implements Serializable{
