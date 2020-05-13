@@ -56,14 +56,14 @@ public class Transaction {
     
     @RolesAllowed("users")
     public List<Payment> viewSentPayments() {
-        List<Payment> incoming_payments = em.createNamedQuery("viewIncomingPayments").getResultList();
-        return incoming_payments;
+        List<Payment> sent_payments = em.createNamedQuery("viewSentPayments").setParameter(1, getUser()).getResultList();
+        return sent_payments;
     }
     
     @RolesAllowed("users")
     public List<Payment> viewReceivedPayments() {
-        List<Payment> outgoing_payments = em.createNamedQuery("viewOutgoingPayments").getResultList();
-        return outgoing_payments;
+        List<Payment> received_payments = em.createNamedQuery("viewReceivedPayments").setParameter(1, getUser()).getResultList();
+        return received_payments;
     }
     
     @RolesAllowed("users")
