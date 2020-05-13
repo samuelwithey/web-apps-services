@@ -15,6 +15,11 @@ import javax.validation.constraints.NotNull;
 
 @NamedQuery(name = "viewAllRequests", query = "SELECT r FROM Request r")
 
+@NamedQuery(name = "viewIncomingRequests", query = "SELECT r FROM Request r WEHRE r.recipient = ?1")
+
+@NamedQuery(name = "viewOutgoingRequests", query = "SELECT r FROM Request r WHERE r.sender = ?1")
+
+
 @Entity
 public class Request implements Serializable{
     

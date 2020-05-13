@@ -15,6 +15,10 @@ import javax.validation.constraints.NotNull;
 
 @NamedQuery(name = "viewAllPayments", query = "SELECT p FROM Payment p")
 
+@NamedQuery(name = "viewIncomingPayments", query = "SELECT p FROM Payment p WHERE p.recipient = ?1")
+
+@NamedQuery(name = "viewOutgoingPayments", query = "SELECT p FROM Payment p WHERE p.sender = ?1")
+
 @Entity
 public class Payment implements Serializable{
     

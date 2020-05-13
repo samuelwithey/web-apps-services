@@ -55,23 +55,27 @@ public class Transaction {
     }
     
     @RolesAllowed("users")
-    public void viewIncomingPayments() {
-    
+    public List<Payment> viewIncomingPayments() {
+        List<Payment> incoming_payments = em.createNamedQuery("viewIncomingPayments").getResultList();
+        return incoming_payments;
     }
     
     @RolesAllowed("users")
-    public void viewOutgoingPayments() {
-    
+    public List<Payment> viewOutgoingPayments() {
+        List<Payment> outgoing_payments = em.createNamedQuery("viewOutgoingPayments").getResultList();
+        return outgoing_payments;
     }
     
     @RolesAllowed("users")
-    public void viewIncomingRequests() {
-    
+    public List<Request> viewIncomingRequests() {
+        List<Request> incoming_requests = em.createNamedQuery("viewIncomingRequests").getResultList();
+        return incoming_requests;
     }
     
     @RolesAllowed("users")
-    public void viewOutgoingRequests() {
-    
+    public List<Request> viewOutgoingRequests() {
+        List<Request> outgoing_requests = em.createNamedQuery("viewOutgoingRequests").getResultList();
+        return outgoing_requests;
     }
     
     @RolesAllowed("admins")
