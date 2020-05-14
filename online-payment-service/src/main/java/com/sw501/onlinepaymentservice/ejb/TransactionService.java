@@ -127,7 +127,11 @@ public class TransactionService {
             double converted_currency_amount = converter.currencyConversion(sender.getUserAccount().getCurrency(), 
                     recipient.getUserAccount().getCurrency(), amount);
             Payment payment_transaction  = new Payment(converted_currency_amount, sender.getUserAccount(), recipient.getUserAccount());
+            sender.getUserAccount().setBalance(sender.getUserAccount().getBalance() - amount);
+            recipient.getUserAccount().setBalance(recipient.getUserAccount().getBalance() + converted_currency_amount);
             em.persist(payment_transaction);
+            em.persist(sender);
+            em.persist(recipient);
             em.flush();
         } else {
             // log not enough funds
@@ -165,7 +169,7 @@ public class TransactionService {
     }
     
     public boolean checkFunds(UserAccount userAccount, double amount) {
-        return (userAccount.getBalance() - amount) > 0;
+        return (userAccount.getBalance() - amount) >= 0;
     }
     
 }
