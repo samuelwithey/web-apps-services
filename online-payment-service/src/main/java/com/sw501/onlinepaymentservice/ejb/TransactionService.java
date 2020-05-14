@@ -61,49 +61,49 @@ public class TransactionService {
     
     @RolesAllowed("users")
     public List<Payment> viewSentPayments() {
-        List<Payment> sent_payments = em.createNamedQuery("viewSentPayments").setParameter(1, getUser()).getResultList();
+        List<Payment> sent_payments = em.createNamedQuery("viewSentPayments").setParameter(1, getUser().getUserAccount()).getResultList();
         return sent_payments;
     }
     
     @RolesAllowed("users")
     public List<Payment> viewReceivedPayments() {
-        List<Payment> received_payments = em.createNamedQuery("viewReceivedPayments").setParameter(1, getUser()).getResultList();
+        List<Payment> received_payments = em.createNamedQuery("viewReceivedPayments").setParameter(1, getUser().getUserAccount()).getResultList();
         return received_payments;
     }
     
     @RolesAllowed("users")
     public List<Request> viewReceivedRequests() {
-        List<Request> incoming_requests = em.createNamedQuery("viewReceivedRequests").setParameter(1, getUser()).getResultList();
+        List<Request> incoming_requests = em.createNamedQuery("viewReceivedRequests").setParameter(1, getUser().getUserAccount()).getResultList();
         return incoming_requests;
     }
     
     @RolesAllowed("users")
     public List<Request> viewPendingReceivedRequests() {
-        List<Request> incoming_requests = em.createNamedQuery("viewPendingReceivedRequests").setParameter(1, getUser()).getResultList();
+        List<Request> incoming_requests = em.createNamedQuery("viewPendingReceivedRequests").setParameter(1, getUser().getUserAccount()).getResultList();
         return incoming_requests;
     }
     
     @RolesAllowed("users")
     public List<Request> viewAcceptedReceivedRequests() {
-        List<Request> incoming_requests = em.createNamedQuery("viewAcceptedReceivedRequests").setParameter(1, getUser()).getResultList();
+        List<Request> incoming_requests = em.createNamedQuery("viewAcceptedReceivedRequests").setParameter(1, getUser().getUserAccount()).getResultList();
         return incoming_requests;
     }
     
     @RolesAllowed("users")
     public List<Request> viewSentRequests() {
-        List<Request> outgoing_requests = em.createNamedQuery("viewSentRequests").setParameter(1, getUser()).getResultList();
+        List<Request> outgoing_requests = em.createNamedQuery("viewSentRequests").setParameter(1, getUser().getUserAccount()).getResultList();
         return outgoing_requests;
     }
     
     @RolesAllowed("users")
     public List<Request> viewPendingSentRequests() {
-        List<Request> outgoing_requests = em.createNamedQuery("viewPendingSentRequests").setParameter(1, getUser()).getResultList();
+        List<Request> outgoing_requests = em.createNamedQuery("viewPendingSentRequests").setParameter(1, getUser().getUserAccount()).getResultList();
         return outgoing_requests;
     }
     
     @RolesAllowed("users")
     public List<Request> viewAcceptedSentRequests() {
-        List<Request> outgoing_requests = em.createNamedQuery("viewAcceptedSentRequests").setParameter(1, getUser()).getResultList();
+        List<Request> outgoing_requests = em.createNamedQuery("viewAcceptedSentRequests").setParameter(1, getUser().getUserAccount()).getResultList();
         return outgoing_requests;
     }
     
