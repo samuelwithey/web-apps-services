@@ -1,5 +1,6 @@
 package com.sw501.onlinepaymentservice.ejb;
 
+import com.sw501.onlinepaymentservice.entity.CurrencyType;
 import com.sw501.onlinepaymentservice.entity.Payment;
 import com.sw501.onlinepaymentservice.entity.Request;
 import com.sw501.onlinepaymentservice.entity.SystemUser;
@@ -10,6 +11,7 @@ import javax.annotation.security.DeclareRoles;
 import javax.annotation.security.RolesAllowed;
 import javax.ejb.SessionContext;
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -22,6 +24,9 @@ public class Transaction {
     
     @Resource
     SessionContext ctx;
+    
+    @Inject
+    Converter converter;
     
     @RolesAllowed("users")
     public SystemUser getUser() {
@@ -115,17 +120,37 @@ public class Transaction {
     }
     
     @RolesAllowed("users")
-    public void makePayment() {
-    
+    public void makePayment(String username, double amount) {
+        SystemUser sender = getUser();
+        if(checkFunds(sender, amount)) {
+            SystemUser recipient = getUser(username);
+            double converted_currency_amount = converter.currencyConversion(sender.getUserAccount().getCurrency(), 
+                    recipient.getUserAccount().getCurrency(), amount);
+            Payment payment_transaction  = new Payment(converted_currency_amount, sender.getUserAccount(), recipient.getUserAccount());
+            em.persist(payment_transaction);
+            em.flush();
+        } else {
+            // log not enough funds
+        }
     }
     
     @RolesAllowed("users")
-    public void makeRequest() {
-    
+    public void makeRequest(String username, double amount) {
+        SystemUser sender = getUser();
+        SystemUser recipient = getUser(username);
+        double converted_currency_amount = converter.currencyConversion(sender.getUserAccount().getCurrency(), 
+                    recipient.getUserAccount().getCurrency(), amount);
+        Request request = new Request(converted_currency_amount, sender.getUserAccount(), recipient.getUserAccount());
+        em.persist(request);
     }
     
     @RolesAllowed("users")
     public void respondToRequest() {
-    
+        
     }
+    
+    public boolean checkFunds(SystemUser user, double amount) {
+        return (user.getUserAccount().getBalance() - amount) > 0;
+    }
+    
 }
