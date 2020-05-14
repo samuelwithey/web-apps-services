@@ -1,6 +1,5 @@
 package com.sw501.onlinepaymentservice.ejb;
 
-import com.sw501.onlinepaymentservice.entity.CurrencyType;
 import com.sw501.onlinepaymentservice.entity.Payment;
 import com.sw501.onlinepaymentservice.entity.Request;
 import com.sw501.onlinepaymentservice.entity.SystemUser;
@@ -79,32 +78,32 @@ public class TransactionService {
     
     @RolesAllowed("users")
     public List<Request> viewPendingReceivedRequests() {
-        List<Request> incoming_requests = em.createNamedQuery("viewPendingReceivedRequests").setParameter(1, getUser().getUserAccount()).getResultList();
-        return incoming_requests;
+        List<Request> pendingReceivedRequests = em.createNamedQuery("viewPendingReceivedRequests").setParameter(1, getUser().getUserAccount()).getResultList();
+        return pendingReceivedRequests;
     }
     
     @RolesAllowed("users")
     public List<Request> viewAcceptedReceivedRequests() {
-        List<Request> incoming_requests = em.createNamedQuery("viewAcceptedReceivedRequests").setParameter(1, getUser().getUserAccount()).getResultList();
-        return incoming_requests;
+        List<Request> acceptedReceivedRequests = em.createNamedQuery("viewAcceptedReceivedRequests").setParameter(1, getUser().getUserAccount()).getResultList();
+        return acceptedReceivedRequests;
     }
     
     @RolesAllowed("users")
     public List<Request> viewSentRequests() {
-        List<Request> outgoing_requests = em.createNamedQuery("viewSentRequests").setParameter(1, getUser().getUserAccount()).getResultList();
-        return outgoing_requests;
+        List<Request> sentRequests = em.createNamedQuery("viewSentRequests").setParameter(1, getUser().getUserAccount()).getResultList();
+        return sentRequests;
     }
     
     @RolesAllowed("users")
     public List<Request> viewPendingSentRequests() {
-        List<Request> outgoing_requests = em.createNamedQuery("viewPendingSentRequests").setParameter(1, getUser().getUserAccount()).getResultList();
-        return outgoing_requests;
+        List<Request> pendingSentRequests = em.createNamedQuery("viewPendingSentRequests").setParameter(1, getUser().getUserAccount()).getResultList();
+        return pendingSentRequests;
     }
     
     @RolesAllowed("users")
     public List<Request> viewAcceptedSentRequests() {
-        List<Request> outgoing_requests = em.createNamedQuery("viewAcceptedSentRequests").setParameter(1, getUser().getUserAccount()).getResultList();
-        return outgoing_requests;
+        List<Request> acceptedSentRequests = em.createNamedQuery("viewAcceptedSentRequests").setParameter(1, getUser().getUserAccount()).getResultList();
+        return acceptedSentRequests;
     }
     
     @RolesAllowed("admins")
