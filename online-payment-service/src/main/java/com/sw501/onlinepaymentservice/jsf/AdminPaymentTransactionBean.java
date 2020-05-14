@@ -1,6 +1,6 @@
 package com.sw501.onlinepaymentservice.jsf;
 
-import com.sw501.onlinepaymentservice.ejb.Transaction;
+import com.sw501.onlinepaymentservice.ejb.TransactionService;
 import com.sw501.onlinepaymentservice.entity.Payment;
 import com.sw501.onlinepaymentservice.entity.Request;
 import java.util.List;
@@ -15,7 +15,7 @@ public class AdminPaymentTransactionBean implements Serializable {
     
     
     @EJB
-    Transaction transaction;
+    TransactionService transaction;
     
 
     public AdminPaymentTransactionBean() {

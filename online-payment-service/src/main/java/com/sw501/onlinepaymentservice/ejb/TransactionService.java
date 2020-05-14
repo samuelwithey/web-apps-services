@@ -17,7 +17,7 @@ import javax.persistence.PersistenceContext;
 
 @DeclareRoles({"users", "admins"})
 @Stateless
-public class Transaction {
+public class TransactionService {
 
     @PersistenceContext
     EntityManager em;
@@ -122,7 +122,7 @@ public class Transaction {
     @RolesAllowed("users")
     public void makePayment(String username, double amount) {
         SystemUser sender = getUser();
-        if(checkFunds(sender, amount)) {
+        if(checkFunds(sender.getUserAccount(), amount)) {
             SystemUser recipient = getUser(username);
             double converted_currency_amount = converter.currencyConversion(sender.getUserAccount().getCurrency(), 
                     recipient.getUserAccount().getCurrency(), amount);
@@ -145,12 +145,27 @@ public class Transaction {
     }
     
     @RolesAllowed("users")
-    public void respondToRequest() {
+    public void acceptRequest(Request request) {
+        if(checkFunds(request.getRecipient().getUser().getUserAccount(), request.getAmount())) {
+            request.setPending(false);
+            request.setAccepted(Boolean.TRUE);
+            em.persist(request);
+            makePayment(request.getSender().getUser().getUsername(), request.getAmount());
+        } else {
+            // log that user does not have enough funds to accept the request
+        }
         
     }
     
-    public boolean checkFunds(SystemUser user, double amount) {
-        return (user.getUserAccount().getBalance() - amount) > 0;
+    @RolesAllowed("users")
+    public void declineRequest(Request request) {
+        request.setPending(false);
+        request.setAccepted(Boolean.FALSE);
+        em.persist(request);
+    }
+    
+    public boolean checkFunds(UserAccount userAccount, double amount) {
+        return (userAccount.getBalance() - amount) > 0;
     }
     
 }
