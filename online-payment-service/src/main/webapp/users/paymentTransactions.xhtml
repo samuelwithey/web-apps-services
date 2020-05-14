@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Payment Transactions</title>
+    </h:head>
+    <h:body>
+        <h2>Sent Payments:</h2>
+        <h:dataTable value="#{userPaymentTransactionBean.sentPayments}" var="sent_payment">
+            <h:column>    				
+                <f:facet name="header">Currency Exchange</f:facet>  				
+                    #{sent_payment.sender.currency} to #{sent_payment.recipient.currency}
+            </h:column>
+            <h:column>    				
+                <f:facet name="header">Amount</f:facet>    				
+                    #{sent_payment.amount}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Recipient</f:facet>
+                    #{sent_payment.recipient.user.username}
+            </h:column>
+        </h:dataTable>
+        <h2>Received Payments:</h2>
+        <h:dataTable value="#{userPaymentTransactionBean.receivedPayments}" var="received_payment">
+            <h:column>    				
+                <f:facet name="header">Currency Exchange</f:facet>  				
+                    #{received_payment.sender.currency} to #{received_payment.recipient.currency}
+            </h:column>
+            <h:column>    				
+                <f:facet name="header">Amount</f:facet>    				
+                    #{received_payment.amount}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Sender</f:facet>
+                    #{received_payment.sender.user.username}
+            </h:column>
+        </h:dataTable>
+    </h:body>
+</html>
