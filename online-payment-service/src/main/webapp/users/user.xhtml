@@ -1,17 +1,37 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
     <h:head>
         <title>User Page</title>
     </h:head>
     <h:body>
-        <h:outputText value="THIS IS A PAGE THAT NORMAL USERS CAN ACCESS"/>
-        <br/>
-        <h:outputText value="#{userAccountBean.username}"/>
+        <h2>Welcome <h:outputText value="#{userAccountBean.username}"/></h2>
         <br/>
         <h:outputText value="#{userAccountBean.currency}"/>
         <h:outputText value="#{userAccountBean.balance}"/>
+        <br/>
+        <h3>Received pending requests</h3>
+        <h:dataTable value="#{userRequestBean.pendingReceivedRequests}" var="request">
+            <h:column>    				
+                <f:facet name="header">Request Amount</f:facet>  				
+                    #{request.amount}
+            </h:column>
+            <h:column>    				
+                <f:facet name="header">Request Sender</f:facet>    				
+                    #{request.sender.user.username}
+            </h:column>
+            <h:column>
+                <h:commandButton id="accept" type="submit" value="Accept" action="#{userRequestBean.acceptRequest(request)}" title="Accept Request"/>
+                <h:commandButton id="decline" type="submit" value="Decline" action="#{userRequestBean.declineRequest(request)}" title="Decline Request"/>
+            </h:column>
+        </h:dataTable>
+        <h:link value="Make a payment" outcome="payment"/>
+        <br/>
+        <h:link value="Make a request" outcome="request"/>
+        <br/>
+        <h:link value="View payments" outcome="paymentTransactions"/>
         <br/>
         <h:link value="Back to index" outcome="/index"/>
     </h:body>
