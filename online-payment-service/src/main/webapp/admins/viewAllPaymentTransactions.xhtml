@@ -9,12 +9,12 @@
     <h:body>
         <h:dataTable value="#{adminPaymentTransactionBean.payments}" var="payment">
             <h:column>    				
-                <f:facet name="header">Currency</f:facet>    				
-                    #{payment.sender.currency}
-            </h:column>
-            <h:column>    				
                 <f:facet name="header">Amount</f:facet>    				
                     #{payment.amount}
+            </h:column>
+            <h:column>    				
+                <f:facet name="header">Currency Conversion</f:facet>  				
+                    #{payment.sender.currency} to #{payment.recipient.currency}
             </h:column>
             <h:column>
                 <f:facet name="header">Sender</f:facet>
