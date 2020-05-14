@@ -7,22 +7,22 @@
         <title>All Payment Transactions</title>
     </h:head>
     <h:body>
-        <h:dataTable value="#{adminPaymentTransactionBean.payments}" var="payment">
+        <h:dataTable value="#{adminPaymentTransactionBean.allPayments}" var="payment">
+            <h:column>    				
+                <f:facet name="header">Currency Exchange</f:facet>  				
+                    #{payment.sender.currency} to #{payment.recipient.currency}
+            </h:column>
             <h:column>    				
                 <f:facet name="header">Amount</f:facet>    				
                     #{payment.amount}
             </h:column>
-            <h:column>    				
-                <f:facet name="header">Currency Conversion</f:facet>  				
-                    #{payment.sender.currency} to #{payment.recipient.currency}
-            </h:column>
             <h:column>
                 <f:facet name="header">Sender</f:facet>
-                    #{payment.sender}
+                    #{payment.sender.user.username}
             </h:column>
             <h:column>
                 <f:facet name="header">Recipient</f:facet>
-                    #{payment.recipient}
+                    #{payment.recipient.user.username}
             </h:column>
         </h:dataTable>
     </h:body>
