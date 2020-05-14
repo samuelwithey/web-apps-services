@@ -93,13 +93,31 @@ public class Request implements Serializable{
         this.recipient = recipient;
     }
 
+    public boolean isPending() {
+        return pending;
+    }
+
+    public void setPending(boolean pending) {
+        this.pending = pending;
+    }
+
+    public Boolean getAccepted() {
+        return accepted;
+    }
+
+    public void setAccepted(Boolean accepted) {
+        this.accepted = accepted;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 89 * hash + Objects.hashCode(this.id);
-        hash = 89 * hash + (int) (Double.doubleToLongBits(this.amount) ^ (Double.doubleToLongBits(this.amount) >>> 32));
-        hash = 89 * hash + Objects.hashCode(this.sender);
-        hash = 89 * hash + Objects.hashCode(this.recipient);
+        int hash = 5;
+        hash = 23 * hash + Objects.hashCode(this.id);
+        hash = 23 * hash + (int) (Double.doubleToLongBits(this.amount) ^ (Double.doubleToLongBits(this.amount) >>> 32));
+        hash = 23 * hash + Objects.hashCode(this.sender);
+        hash = 23 * hash + Objects.hashCode(this.recipient);
+        hash = 23 * hash + (this.pending ? 1 : 0);
+        hash = 23 * hash + Objects.hashCode(this.accepted);
         return hash;
     }
 
@@ -118,6 +136,9 @@ public class Request implements Serializable{
         if (Double.doubleToLongBits(this.amount) != Double.doubleToLongBits(other.amount)) {
             return false;
         }
+        if (this.pending != other.pending) {
+            return false;
+        }
         if (!Objects.equals(this.id, other.id)) {
             return false;
         }
@@ -127,8 +148,9 @@ public class Request implements Serializable{
         if (!Objects.equals(this.recipient, other.recipient)) {
             return false;
         }
+        if (!Objects.equals(this.accepted, other.accepted)) {
+            return false;
+        }
         return true;
     }
-    
-    
 }
