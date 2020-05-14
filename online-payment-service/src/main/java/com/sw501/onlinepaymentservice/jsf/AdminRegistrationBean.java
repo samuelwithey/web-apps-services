@@ -1,6 +1,6 @@
 package com.sw501.onlinepaymentservice.jsf;
 
-import com.sw501.onlinepaymentservice.ejb.UserService;
+import com.sw501.onlinepaymentservice.ejb.RegistrationService;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
@@ -10,7 +10,7 @@ import javax.inject.Named;
 public class AdminRegistrationBean {
 
     @EJB
-    UserService usrSrv;
+    RegistrationService registration;
     
     String username;
     String userpassword;
@@ -20,18 +20,10 @@ public class AdminRegistrationBean {
     }
     
     public String register() {
-        usrSrv.registerAdmin(username, userpassword);
+        registration.registerAdmin(username, userpassword);
         return "admin";
     }
     
-    public UserService getUsrSrv() {
-        return usrSrv;
-    }
-
-    public void setUsrSrv(UserService usrSrv) {
-        this.usrSrv = usrSrv;
-    }
-
     public String getUsername() {
         return username;
     }

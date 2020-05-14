@@ -1,8 +1,7 @@
 package com.sw501.onlinepaymentservice.jsf;
 
-import com.sw501.onlinepaymentservice.ejb.UserService;
+import com.sw501.onlinepaymentservice.ejb.RegistrationService;
 import com.sw501.onlinepaymentservice.entity.CurrencyType;
-import com.sw501.onlinepaymentservice.entity.UserAccount;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
@@ -12,7 +11,7 @@ import javax.inject.Named;
 public class UserRegistrationBean {
 
     @EJB
-    UserService usrSrv;
+    RegistrationService registration;
     
     String username;
     String userpassword;
@@ -23,7 +22,7 @@ public class UserRegistrationBean {
     }
     
     public String register() {
-        usrSrv.registerUser(username, userpassword, currency);
+        registration.registerUser(username, userpassword, currency);
         return "index";
     }
 
