@@ -61,11 +61,7 @@ public class UserService {
             account = new UserAccount();
             account.setCurrency(currency);
             
-            if(currency.name().equals("GBP")) {
-                account.setBalance(1000);
-            } else {
-                account.setBalance(converter.currencyConversion(CurrencyType.GBP, currency, 1000));
-            }
+            account.setBalance(converter.currencyConversion(CurrencyType.GBP, currency, 1000));
             account.setUser(sys_user);
             sys_user.setUserAccount(account);
             

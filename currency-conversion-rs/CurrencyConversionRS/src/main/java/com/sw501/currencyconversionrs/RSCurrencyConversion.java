@@ -20,25 +20,20 @@ public class RSCurrencyConversion {
     private Hashtable<String, Double> currency_rates = new Hashtable();
 
     public RSCurrencyConversion() {
-        this.currency_rates.put("GBP_to_USD_rate", 1.24);
-        this.currency_rates.put("GBP_to_EUR_rate", 1.14);
-        this.currency_rates.put("USD_to_GBP_rate", 0.81);
-        this.currency_rates.put("USD_to_EUR_rate", 0.91);
-        this.currency_rates.put("EUR_to_GBP_rate", 0.88);
-        this.currency_rates.put("EUR_to_USD_rate", 1.09);
+        this.currency_rates.put("GBP", 1.0);
+        this.currency_rates.put("EUR", 1.14);
+        this.currency_rates.put("USD", 1.24);
     }
     
     @GET
     @Path("{currency1}/{currency2}/{amount_of_currency}")
     @Produces({MediaType.APPLICATION_JSON})
     public Response CurrencyConversion(@PathParam("currency1") String currency1, @PathParam("currency2") String currency2, @PathParam("amount_of_currency") double amount_of_currency) {
-        String conversion_rate = currency1 + "_to_" + currency2 + "_rate";
-        if (currency_rates.containsKey(conversion_rate)) {
-            double conversion_amount = amount_of_currency * currency_rates.get(conversion_rate);
-            return Response.ok(conversion_amount).build();
-        } else {
-            throw new NotFoundException();
-        }
+        return Response.ok(convert(currency_rates.get(currency1), currency_rates.get(currency2), amount_of_currency)).build();
+    }
+    
+    public double convert(double currency_rate1, double currency_rate2, double amount) {
+        return (amount / currency_rate1) * currency_rate2;
     }
     
     @PostConstruct
