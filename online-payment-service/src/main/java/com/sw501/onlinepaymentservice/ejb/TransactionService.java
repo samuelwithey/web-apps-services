@@ -70,18 +70,6 @@ public class TransactionService {
         return received_payments;
     }
     
-    @RolesAllowed("users")
-    public List<Request> viewPendingReceivedRequests() {
-        List<Request> pendingReceivedRequests = em.createNamedQuery("viewPendingReceivedRequests").setParameter(1, getUser().getUserAccount()).getResultList();
-        return pendingReceivedRequests;
-    }
-    
-    @RolesAllowed("users")
-    public List<Request> viewPendingSentRequests() {
-        List<Request> pendingSentRequests = em.createNamedQuery("viewPendingSentRequests").setParameter(1, getUser().getUserAccount()).getResultList();
-        return pendingSentRequests;
-    }
-    
     @RolesAllowed("admins")
     public List<Payment> viewAllPayments() {
         List<Payment> payments = em.createNamedQuery("viewAllPayments").getResultList();
@@ -94,15 +82,27 @@ public class TransactionService {
         return requests;
     }
     
-    @RolesAllowed("admins")
+    @RolesAllowed("users")
+    public List<Request> viewPendingReceivedRequests() {
+        List<Request> pendingReceivedRequests = em.createNamedQuery("viewPendingReceivedRequests").setParameter(1, getUser().getUserAccount()).getResultList();
+        return pendingReceivedRequests;
+    }
+    
+    @RolesAllowed("users")
+    public List<Request> viewPendingSentRequests() {
+        List<Request> pendingSentRequests = em.createNamedQuery("viewPendingSentRequests").setParameter(1, getUser().getUserAccount()).getResultList();
+        return pendingSentRequests;
+    }
+    
+    @RolesAllowed("users")
     public List<Request> viewReceivedAcceptedDeclinedRequests() {
-        List<Request> requests = em.createNamedQuery("viewReceivedAcceptedDeclinedRequests").getResultList();
+        List<Request> requests = em.createNamedQuery("viewReceivedAcceptedDeclinedRequests").setParameter(1, getUser().getUserAccount()).getResultList();
         return requests;
     }
     
-    @RolesAllowed("admins")
+    @RolesAllowed("users")
     public List<Request> viewSentAcceptedDeclinedRequests() {
-        List<Request> requests = em.createNamedQuery("viewSentAcceptedDeclinedRequests").getResultList();
+        List<Request> requests = em.createNamedQuery("viewSentAcceptedDeclinedRequests").setParameter(1, getUser().getUserAccount()).getResultList();
         return requests;
     }
     
