@@ -13,6 +13,8 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
+@NamedQuery(name = "getRequest", query = "SELECT r FROM Request r WHERE r.id = ?1")
+
 @NamedQuery(name = "viewAllRequests", query = "SELECT r FROM Request r")
 
 @NamedQuery(name = "viewPendingReceivedRequests", query = "SELECT r FROM Request r WHERE r.recipient = ?1 AND r.pending = TRUE")
