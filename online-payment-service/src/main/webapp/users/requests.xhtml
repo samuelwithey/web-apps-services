@@ -8,47 +8,47 @@
     </h:head>
     <h:body>
         <h2>Received Accepted and Declined Requests:</h2>
-        <h:outputText value="No Received Accepted or Declined Requests" rendered="#{empty userRequestBean.receivedAcceptedDeclinedRequests}" /><br/>
-        <h:dataTable value="#{userRequestBean.receivedAcceptedDeclinedRequests}" var="request" rendered="#{not empty userRequestBean.receivedAcceptedDeclinedRequests}">
+        <h:outputText value="No Received Accepted or Declined Requests" rendered="#{empty userRequestBean.receivedAcceptedDeclinedRequests}" />
+        <h:dataTable value="#{userRequestBean.receivedAcceptedDeclinedRequests}" var="received_accepted_declined_request" rendered="#{not empty userRequestBean.receivedAcceptedDeclinedRequests}">
             <h:column>    				
                 <f:facet name="header">Sender</f:facet>  				
-                    #{request.sender.user.username}
+                    #{received_accepted_declined_request.sender.user.username}
             </h:column>
             <h:column>    				
                 <f:facet name="header">Amount</f:facet>    				
-                    #{request.amount}
+                    #{received_accepted_declined_request.amount}
             </h:column>
             <h:column>
                 <f:facet name="header">Accepted</f:facet>
-                    #{request.accepted}
+                    #{received_accepted_declined_request.accepted}
             </h:column>
         </h:dataTable>
         <h2>Sent Pending Requests:</h2>
-        <h:outputText value="No Sent Pending Requests" rendered="#{empty userRequestBean.pendingSentRequests}" /><br/>
+        <h:outputText value="No Sent Pending Requests" rendered="#{empty userRequestBean.pendingSentRequests}" />
         <h:dataTable value="#{userRequestBean.pendingSentRequests}" var="sent_pending_request" rendered="#{not empty userRequestBean.pendingSentRequests}">
             <h:column>    				
                 <f:facet name="header">Recipient</f:facet>  				
-                    #{request.recipient.user.username}
+                    #{sent_pending_request.recipient.user.username}
             </h:column>
             <h:column>    				
                 <f:facet name="header">Amount</f:facet>    				
-                    #{request.amount}
+                    #{sent_pending_request.amount}
             </h:column>
         </h:dataTable>
         <h2>Sent Accepted and Declined Requests:</h2>
-        <h:outputText value="No Sent Accepted or Declined Requests" rendered="#{empty userRequestBean.sentAcceptedDeclinedReceivedRequests}" /><br/>
+        <h:outputText value="No Sent Accepted or Declined Requests" rendered="#{empty userRequestBean.sentAcceptedDeclinedReceivedRequests}" />
         <h:dataTable value="#{userRequestBean.sentAcceptedDeclinedReceivedRequests}" var="sent_accepted_declined_request" rendered="#{not empty userRequestBean.sentAcceptedDeclinedReceivedRequests}">
             <h:column>    				
                 <f:facet name="header">Recipient</f:facet>  				
-                    #{request.recipient.user.username}
+                    #{sent_accepted_declined_request.recipient.user.username}
             </h:column>
             <h:column>    				
                 <f:facet name="header">Amount</f:facet>    				
-                    #{request.amount}
+                    #{sent_accepted_declined_request.amount}
             </h:column>
             <h:column>
                 <f:facet name="header">Accepted</f:facet>
-                    #{request.accepted}
+                    #{sent_accepted_declined_request.accepted}
             </h:column>
         </h:dataTable>
     </h:body>
