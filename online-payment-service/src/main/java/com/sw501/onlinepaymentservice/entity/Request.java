@@ -13,20 +13,23 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
-@NamedQuery(name = "viewAllRequests", query = "SELECT r FROM Request r")
+@NamedQuery(name = "viewAllRequests", query = "SELECT r FROM Request r") // used
 
 @NamedQuery(name = "viewReceivedRequests", query = "SELECT r FROM Request r WHERE r.recipient = ?1")
 
-@NamedQuery(name = "viewPendingReceivedRequests", query = "SELECT r FROM Request r WHERE r.recipient = ?1 AND r.pending = TRUE")
+@NamedQuery(name = "viewPendingReceivedRequests", query = "SELECT r FROM Request r WHERE r.recipient = ?1 AND r.pending = TRUE") // used
 
 @NamedQuery(name = "viewAcceptedReceivedRequests", query = "SELECT r FROM Request r WHERE r.recipient = ?1 AND r.accepted = TRUE")
 
 @NamedQuery(name = "viewSentRequests", query = "SELECT r FROM Request r WHERE r.sender = ?1")
 
-@NamedQuery(name = "viewPendingSentRequests", query = "SELECT r FROM Request r WHERE r.sender = ?1 AND r.pending = TRUE")
+@NamedQuery(name = "viewPendingSentRequests", query = "SELECT r FROM Request r WHERE r.sender = ?1 AND r.pending = TRUE") // used
 
 @NamedQuery(name = "viewAcceptedSentRequests", query = "SELECT r FROM Request r WHERE r.sender = ?1 AND r.accepted = TRUE")
 
+@NamedQuery(name = "ReceivedAcceptedDeclinedRequests", query = "SELECT r FROM Request r WHERE r.recipient = ?1 AND r.pending = FALSE") // used
+
+@NamedQuery(name = "SentAcceptedDeclinedRequests", query = "SELECT r FROM Request r WHERE r.sender = ?1 AND r.pending = FALSE") // used
 
 @Entity
 public class Request implements Serializable{

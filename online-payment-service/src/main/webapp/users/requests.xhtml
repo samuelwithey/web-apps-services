@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Requests</title>
+    </h:head>
+    <h:body>
+        <h2>Received Accepted and Declined Requests:</h2>
+        <h:outputText value="No Received Accepted or Declined Requests" rendered="#{empty userRequestBean.receivedAcceptedDeclinedRequests}" /><br/>
+        <h:dataTable value="#{userRequestBean.receivedAcceptedDeclinedRequests}" var="request" rendered="#{not empty userRequestBean.receivedAcceptedDeclinedRequests}">
+            <h:column>    				
+                <f:facet name="header">Sender</f:facet>  				
+                    #{request.sender.user.username}
+            </h:column>
+            <h:column>    				
+                <f:facet name="header">Amount</f:facet>    				
+                    #{request.amount}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Accepted</f:facet>
+                    #{request.accepted}
+            </h:column>
+        </h:dataTable>
+        <h2>Sent Pending Requests:</h2>
+        <h:outputText value="No Sent Pending Requests" rendered="#{empty userRequestBean.pendingSentRequests}" /><br/>
+        <h:dataTable value="#{userRequestBean.pendingSentRequests}" var="sent_pending_request" rendered="#{not empty userRequestBean.pendingSentRequests}">
+            <h:column>    				
+                <f:facet name="header">Recipient</f:facet>  				
+                    #{request.recipient.user.username}
+            </h:column>
+            <h:column>    				
+                <f:facet name="header">Amount</f:facet>    				
+                    #{request.amount}
+            </h:column>
+        </h:dataTable>
+        <h2>Sent Accepted and Declined Requests:</h2>
+        <h:outputText value="No Sent Accepted or Declined Requests" rendered="#{empty userRequestBean.sentAcceptedDeclinedReceivedRequests}" /><br/>
+        <h:dataTable value="#{userRequestBean.sentAcceptedDeclinedReceivedRequests}" var="sent_accepted_declined_request" rendered="#{not empty userRequestBean.sentAcceptedDeclinedReceivedRequests}">
+            <h:column>    				
+                <f:facet name="header">Recipient</f:facet>  				
+                    #{request.recipient.user.username}
+            </h:column>
+            <h:column>    				
+                <f:facet name="header">Amount</f:facet>    				
+                    #{request.amount}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Accepted</f:facet>
+                    #{request.accepted}
+            </h:column>
+        </h:dataTable>
+    </h:body>
+</html>

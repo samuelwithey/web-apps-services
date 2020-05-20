@@ -71,39 +71,15 @@ public class TransactionService {
     }
     
     @RolesAllowed("users")
-    public List<Request> viewReceivedRequests() {
-        List<Request> incoming_requests = em.createNamedQuery("viewReceivedRequests").setParameter(1, getUser().getUserAccount()).getResultList();
-        return incoming_requests;
-    }
-    
-    @RolesAllowed("users")
     public List<Request> viewPendingReceivedRequests() {
         List<Request> pendingReceivedRequests = em.createNamedQuery("viewPendingReceivedRequests").setParameter(1, getUser().getUserAccount()).getResultList();
         return pendingReceivedRequests;
     }
     
     @RolesAllowed("users")
-    public List<Request> viewAcceptedReceivedRequests() {
-        List<Request> acceptedReceivedRequests = em.createNamedQuery("viewAcceptedReceivedRequests").setParameter(1, getUser().getUserAccount()).getResultList();
-        return acceptedReceivedRequests;
-    }
-    
-    @RolesAllowed("users")
-    public List<Request> viewSentRequests() {
-        List<Request> sentRequests = em.createNamedQuery("viewSentRequests").setParameter(1, getUser().getUserAccount()).getResultList();
-        return sentRequests;
-    }
-    
-    @RolesAllowed("users")
     public List<Request> viewPendingSentRequests() {
         List<Request> pendingSentRequests = em.createNamedQuery("viewPendingSentRequests").setParameter(1, getUser().getUserAccount()).getResultList();
         return pendingSentRequests;
-    }
-    
-    @RolesAllowed("users")
-    public List<Request> viewAcceptedSentRequests() {
-        List<Request> acceptedSentRequests = em.createNamedQuery("viewAcceptedSentRequests").setParameter(1, getUser().getUserAccount()).getResultList();
-        return acceptedSentRequests;
     }
     
     @RolesAllowed("admins")
@@ -115,6 +91,18 @@ public class TransactionService {
     @RolesAllowed("admins")
     public List<Request> viewAllRequests() {
         List<Request> requests = em.createNamedQuery("viewAllRequests").getResultList();
+        return requests;
+    }
+    
+    @RolesAllowed("admins")
+    public List<Request> viewReceivedAcceptedDeclinedRequests() {
+        List<Request> requests = em.createNamedQuery("viewReceivedAcceptedDeclinedRequests").getResultList();
+        return requests;
+    }
+    
+    @RolesAllowed("admins")
+    public List<Request> viewSentAcceptedDeclinedRequests() {
+        List<Request> requests = em.createNamedQuery("viewSentAcceptedDeclinedRequests").getResultList();
         return requests;
     }
     

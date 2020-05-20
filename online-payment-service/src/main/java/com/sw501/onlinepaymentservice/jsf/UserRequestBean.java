@@ -47,6 +47,18 @@ public class UserRequestBean implements Serializable {
         return transaction_srv.viewPendingReceivedRequests();
     }
     
+    public List<Request> getReceivedAcceptedDeclinedRequests() {
+        return transaction_srv.viewReceivedAcceptedDeclinedRequests();
+    }
+    
+    public List<Request> getPendingSentRequests() {
+        return transaction_srv.viewPendingSentRequests();
+    }
+    
+    public List<Request> getSentAcceptedDeclinedReceivedRequests() {
+        return transaction_srv.viewSentAcceptedDeclinedRequests();
+    }
+    
     public void acceptRequest(Request request) {
         transaction_srv.acceptRequest(request);
     }
