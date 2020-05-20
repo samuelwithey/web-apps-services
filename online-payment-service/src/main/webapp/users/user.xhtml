@@ -8,30 +8,31 @@
     </h:head>
     <h:body>
         <h2>Welcome <h:outputText value="#{userAccountBean.username}"/></h2>
-        <br/>
-        <h:outputText value="#{userAccountBean.currency}"/>
+        <h:outputText value="Balance: #{userAccountBean.currency}"/>
         <h:outputText value="#{userAccountBean.balance}"/>
         <br/>
-        <h3>Received pending requests</h3>
-        <h:dataTable value="#{userRequestBean.pendingReceivedRequests}" var="request">
+        <br/>
+        <h2>Pending Received Requests</h2>
+        <h:outputText value="No Requests" rendered="#{empty userRequestBean.pendingReceivedRequests}" />
+        <h:dataTable value="#{userRequestBean.pendingReceivedRequests}" var="requests" rendered="#{not empty userRequestBean.pendingReceivedRequests}">
             <h:column>    				
-                <f:facet name="header">Request Amount</f:facet>  				
-                    #{request.amount}
+                <f:facet name="header">Sender</f:facet>  				
+                    #{requests.sender.user.username}
             </h:column>
             <h:column>    				
-                <f:facet name="header">Request Sender</f:facet>    				
-                    #{request.sender.user.username}
-            </h:column>
-            <h:column>
-                <h:commandButton id="accept" type="submit" value="Accept" action="#{userRequestBean.acceptRequest(request)}" title="Accept Request"/>
-                <h:commandButton id="decline" type="submit" value="Decline" action="#{userRequestBean.declineRequest(request)}" title="Decline Request"/>
+                <f:facet name="header">Amount</f:facet>    				
+                    #{requests.amount}
             </h:column>
         </h:dataTable>
+        <br/>
+        <br/>
         <h:link value="Make a payment" outcome="payment"/>
         <br/>
         <h:link value="Make a request" outcome="request"/>
         <br/>
         <h:link value="View payments" outcome="paymentTransactions"/>
+        <br/>
+        <h:link value="View requests" outcome="requests"/>
         <br/>
         <h:link value="Back to index" outcome="/index"/>
     </h:body>
