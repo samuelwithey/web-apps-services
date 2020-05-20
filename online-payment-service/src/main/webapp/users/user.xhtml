@@ -14,14 +14,23 @@
         <br/>
         <h2>Pending Received Requests</h2>
         <h:outputText value="No Requests" rendered="#{empty userRequestBean.pendingReceivedRequests}" />
-        <h:dataTable value="#{userRequestBean.pendingReceivedRequests}" var="requests" rendered="#{not empty userRequestBean.pendingReceivedRequests}">
+        <h:dataTable value="#{userRequestBean.pendingReceivedRequests}" var="requestVar" rendered="#{not empty userRequestBean.pendingReceivedRequests}">
             <h:column>    				
                 <f:facet name="header">Sender</f:facet>  				
-                    #{requests.sender.user.username}
+                    #{requestVar.sender.user.username}
             </h:column>
             <h:column>    				
                 <f:facet name="header">Amount</f:facet>    				
-                    #{requests.amount}
+                    #{requestVar.amount}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Accept/Decline</f:facet>
+                <h:form>
+                    <h:commandButton id="accept" type="submit" value="Accept" action="#{userRequestBean.acceptRequest(requestVar)}" title="Accept Request"/>
+                </h:form>
+                <h:form>
+                    <h:commandButton id="decline" type="submit" value="Decline" action="#{userRequestBean.declineRequest(requestVar)}" title="Decline Request"/>
+                </h:form>
             </h:column>
         </h:dataTable>
         <br/>
