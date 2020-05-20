@@ -4,7 +4,9 @@ import com.sw501.onlinepaymentservice.ejb.TransactionService;
 import com.sw501.onlinepaymentservice.entity.Payment;
 import java.io.Serializable;
 import java.util.List;
+import javax.annotation.Resource;
 import javax.ejb.EJB;
+import javax.ejb.SessionContext;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 
@@ -15,22 +17,23 @@ public class UserPaymentTransactionBean implements Serializable {
     @EJB
     TransactionService transaction_srv;
     
-    String username;
+    String recipient_username;
     double amount;
     
     public UserPaymentTransactionBean() {
     }
     
     public void makePayment() {
-        transaction_srv.makePayment(username, amount);
+        String sender_username = transaction_srv.getLoggedInUsername();
+        transaction_srv.makePayment(sender_username, recipient_username, amount);
     }
 
-    public String getUsername() {
-        return username;
+    public String getRecipient_username() {
+        return recipient_username;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setRecipient_username(String recipient_username) {
+        this.recipient_username = recipient_username;
     }
 
     public double getAmount() {
