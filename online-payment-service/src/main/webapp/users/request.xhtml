@@ -11,7 +11,7 @@
             Fill in the form to make a new request.
             <br/>
             <h:outputLabel for="username" value="*User name of recipient of request:"/>
-            <h:inputText id ="username" value="#{userRequestBean.username}" title="Enter username" required="true" requiredMessage="Mandatory Field"/>
+            <h:inputText id ="username" value="#{userRequestBean.recipient_username}" title="Enter username" required="true" requiredMessage="Mandatory Field"/>
             <h:message style="color:red" for="username"/>
             <br/>
             <h:outputLabel for="amount" value="*Request Amount:"/>

@@ -6,7 +6,9 @@ import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
+import javax.servlet.http.HttpServletRequest;
 
 @Named
 @RequestScoped
@@ -16,7 +18,7 @@ public class UserRequestBean implements Serializable {
     @EJB
     TransactionService transaction_srv;
     
-    String username;
+    String recipient_username;
     double amount;
     
 
@@ -24,15 +26,15 @@ public class UserRequestBean implements Serializable {
     }
     
     public void makeRequest() {
-        transaction_srv.makeRequest(username, amount);
+        transaction_srv.makeRequest(recipient_username, amount);
     }
 
-    public String getUsername() {
-        return username;
+    public String getRecipient_username() {
+        return recipient_username;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setRecipient_username(String recipient_username) {
+        this.recipient_username = recipient_username;
     }
 
     public double getAmount() {
@@ -59,11 +61,11 @@ public class UserRequestBean implements Serializable {
         return transaction_srv.viewSentAcceptedDeclinedRequests();
     }
     
-    public void acceptRequest(Request request) {
-        transaction_srv.acceptRequest(request);
+    public void acceptRequest(Request requestVar) {
+        transaction_srv.acceptRequest(requestVar);
     }
     
-    public void declineRequest(Request request) {
-        transaction_srv.declineRequest(request);
+    public void declineRequest(Request requestVar) {
+        transaction_srv.declineRequest(requestVar);
     }
 }
