@@ -6,6 +6,7 @@ import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
@@ -63,7 +64,13 @@ public class UserRequestBean implements Serializable {
     }
     
     public void acceptRequest(Request requestVar) {
-        transaction_srv.acceptRequest(requestVar);
+        FacesContext context = FacesContext.getCurrentInstance();
+        String recipient_user = requestVar.getRecipient().getUser().getUsername();
+        if(transaction_srv.checkFunds(recipient_user, requestVar.getAmount())) {
+            transaction_srv.acceptRequest(requestVar);
+        }   else {
+            context.addMessage(null, new FacesMessage("Not enough funds to accept request"));
+        }
     }
     
     public void declineRequest(Request requestVar) {

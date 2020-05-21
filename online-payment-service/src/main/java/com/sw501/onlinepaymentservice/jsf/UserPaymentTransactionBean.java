@@ -8,6 +8,8 @@ import javax.annotation.Resource;
 import javax.ejb.EJB;
 import javax.ejb.SessionContext;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
 @Named
@@ -24,9 +26,15 @@ public class UserPaymentTransactionBean implements Serializable {
     }
     
     public String makePayment() {
+        FacesContext context = FacesContext.getCurrentInstance();
         String sender_username = transaction_srv.getLoggedInUsername();
-        transaction_srv.makePayment(sender_username, recipient_username, amount);
-        return "user";
+        if(transaction_srv.checkFunds(sender_username, amount)) {
+            transaction_srv.makePayment(sender_username, recipient_username, amount);
+            return "user";
+        } else {
+            context.addMessage(null, new FacesMessage("Not enough funds"));
+        }
+        return null;
     }
 
     public String getRecipient_username() {
