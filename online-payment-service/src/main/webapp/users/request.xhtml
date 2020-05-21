@@ -15,7 +15,9 @@
             <h:message style="color:red" for="username"/>
             <br/>
             <h:outputLabel for="amount" value="*Request Amount:"/>
-            <h:inputText id ="amount" value="#{userRequestBean.amount}" title="Enter request amount" required="true" requiredMessage="Mandatory Field"/>
+            <h:inputText id ="amount" value="#{userRequestBean.amount}" title="Enter request amount" required="true" requiredMessage="Mandatory Field">
+                <f:convertNumber minFractionDigits = "2" maxFractionDigits="2" />
+            </h:inputText>
             <h:message style="color:red" for="amount"/>
             <br/>
             <h:commandButton id="register" type="submit" value="Make Request" action="#{userRequestBean.makeRequest}" title="Send Request"/>

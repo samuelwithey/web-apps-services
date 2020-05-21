@@ -9,7 +9,9 @@
     <h:body>
         <h2>Welcome <h:outputText value="#{userAccountBean.username}"/></h2>
         <h:outputText value="Balance: #{userAccountBean.currency}"/>
-        <h:outputText value="#{userAccountBean.balance}"/>
+        <h:outputText value="#{userAccountBean.balance}">
+            <f:convertNumber minFractionDigits = "2" maxFractionDigits="2" />
+        </h:outputText>
         <br/>
         <br/>
         <h2>Pending Received Requests</h2>
