@@ -122,19 +122,15 @@ public class TransactionService {
     public void makePayment(String sender, String recipient, double amount) {
         SystemUser sender_user = getUser(sender);
         SystemUser recipient_user = getUser(recipient);
-        if(checkFunds(sender_user.getUserAccount(), amount)) {
-            double converted_currency_amount = converter.currencyConversion(sender_user.getUserAccount().getCurrency(), 
-                    recipient_user.getUserAccount().getCurrency(), amount);
-            Payment payment_transaction  = new Payment(converted_currency_amount, sender_user.getUserAccount(), recipient_user.getUserAccount());
-            sender_user.getUserAccount().setBalance(sender_user.getUserAccount().getBalance() - amount);
-            recipient_user.getUserAccount().setBalance(recipient_user.getUserAccount().getBalance() + converted_currency_amount);
-            em.persist(payment_transaction);
-            em.persist(sender_user);
-            em.persist(recipient_user);
-            em.flush();
-        } else {
-            // log not enough funds
-        }
+        double converted_currency_amount = converter.currencyConversion(sender_user.getUserAccount().getCurrency(), 
+                recipient_user.getUserAccount().getCurrency(), amount);
+        Payment payment_transaction  = new Payment(converted_currency_amount, sender_user.getUserAccount(), recipient_user.getUserAccount());
+        sender_user.getUserAccount().setBalance(sender_user.getUserAccount().getBalance() - amount);
+        recipient_user.getUserAccount().setBalance(recipient_user.getUserAccount().getBalance() + converted_currency_amount);
+        em.persist(payment_transaction);
+        em.persist(sender_user);
+        em.persist(recipient_user);
+        em.flush();
     }
     
     @RolesAllowed("users")
@@ -150,16 +146,12 @@ public class TransactionService {
     @RolesAllowed("users")
     public void acceptRequest(Request accepted_request) {
         Request updated_request = getRequest(accepted_request.getId());
-        if(checkFunds(updated_request.getRecipient().getUser().getUserAccount(), updated_request.getAmount())) {
-            updated_request.setPending(false);
-            updated_request.setAccepted(Boolean.TRUE);
-            em.persist(updated_request);
-            String request_username = updated_request.getRecipient().getUser().getUsername();
-            String sender_username = updated_request.getSender().getUser().getUsername();
-            makePayment(request_username, sender_username, updated_request.getAmount());
-        } else {
-            // log that user does not have enough funds to accept the accepted_request
-        }
+        updated_request.setPending(false);
+        updated_request.setAccepted(Boolean.TRUE);
+        em.persist(updated_request);
+        String request_username = updated_request.getRecipient().getUser().getUsername();
+        String sender_username = updated_request.getSender().getUser().getUsername();
+        makePayment(request_username, sender_username, updated_request.getAmount());
     }
     
     @RolesAllowed("users")
@@ -170,8 +162,9 @@ public class TransactionService {
         em.persist(updated_request);
     }
     
-    public boolean checkFunds(UserAccount userAccount, double amount) {
-        return (userAccount.getBalance() - amount) >= 0;
+    public boolean checkFunds(String username, double amount) {
+        SystemUser user = getUser(username);
+        return (user.getUserAccount().getBalance() - amount) >= 0;
     }
     
 }
