@@ -23,9 +23,10 @@ public class UserPaymentTransactionBean implements Serializable {
     public UserPaymentTransactionBean() {
     }
     
-    public void makePayment() {
+    public String makePayment() {
         String sender_username = transaction_srv.getLoggedInUsername();
         transaction_srv.makePayment(sender_username, recipient_username, amount);
+        return "user";
     }
 
     public String getRecipient_username() {

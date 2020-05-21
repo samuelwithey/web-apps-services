@@ -25,8 +25,9 @@ public class UserRequestBean implements Serializable {
     public UserRequestBean() {
     }
     
-    public void makeRequest() {
+    public String makeRequest() {
         transaction_srv.makeRequest(recipient_username, amount);
+        return "user";
     }
 
     public String getRecipient_username() {
