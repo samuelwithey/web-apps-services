@@ -8,7 +8,8 @@
     </h:head>
     <h:body>
         <h2>Sent Payments:</h2>
-        <h:dataTable value="#{userPaymentTransactionBean.sentPayments}" var="sent_payment">
+        <h:outputText value="No Sent Payments" rendered="#{empty userPaymentTransactionBean.sentPayments}" />
+        <h:dataTable value="#{userPaymentTransactionBean.sentPayments}" var="sent_payment" rendered="#{not empty userPaymentTransactionBean.sentPayments}" >
             <h:column>    				
                 <f:facet name="header">Currency Exchange</f:facet>  				
                     #{sent_payment.sender.currency} to #{sent_payment.recipient.currency}
@@ -23,7 +24,8 @@
             </h:column>
         </h:dataTable>
         <h2>Received Payments:</h2>
-        <h:dataTable value="#{userPaymentTransactionBean.receivedPayments}" var="received_payment">
+        <h:outputText value="No Received Payments" rendered="#{empty userPaymentTransactionBean.receivedPayments}" />
+        <h:dataTable value="#{userPaymentTransactionBean.receivedPayments}" var="received_payment" rendered="#{not empty userPaymentTransactionBean.receivedPayments}">
             <h:column>    				
                 <f:facet name="header">Currency Exchange</f:facet>  				
                     #{received_payment.sender.currency} to #{received_payment.recipient.currency}
