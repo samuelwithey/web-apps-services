@@ -1,3 +1,5 @@
+It is assumed that future years’ assignments will be sufficiently different (in line with best assessment practice) and so this will not provide assistance beyond that already available.
+
 # An Online Payment Service
 ## 1. Introduction
 This assignment is about the design and implementation of a web-based, multi-user payment service using Java Enterprise Edition (J2EE) technologies. The system is a much simplified version of PayPal. Through a JSF-based web interface, users should be able to send money to other registered users (e.g. using their registered email address as their unique identifier), request money from other registered users and manage their own account (e.g. look at their recent transactions). Super-users (i.e. admins) should be able to access all user accounts and transactions. Optionally, you will deploy your application on the cloud (e.g. on Amazon AWS, Microsoft Azure, or any similar infrastructure).
